@@ -1,15 +1,14 @@
-import { Switch, Route } from 'react-router-dom';
-
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import { Routes, Route } from 'react-router-dom';
 
-const Routes = (): JSX.Element => {
+const RouteList = (): JSX.Element => {
   return (
-    <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/cart" component={Cart} />
-    </Switch>
+    <Routes>
+      <Route path="/" caseSensitive={true} element={<Home />} />
+      <Route path="/cart" caseSensitive={true} element={<Cart />} />
+    </Routes>
   );
 };
 
-export default Routes;
+export default RouteList;
