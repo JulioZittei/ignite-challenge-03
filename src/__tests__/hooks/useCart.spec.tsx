@@ -15,16 +15,14 @@ const initialStoragedData = [
   {
     id: 1,
     amount: 2,
-    image:
-      'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
+    image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
     price: 179.9,
     title: 'Tênis de Caminhada Leve Confortável',
   },
   {
     id: 2,
     amount: 1,
-    image:
-      'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
+    image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
     price: 139.9,
     title: 'Tênis VR Caminhada Confortável Detalhes Couro Masculino',
   },
@@ -34,9 +32,7 @@ describe('useCart Hook', () => {
   beforeEach(() => {
     apiMock.reset();
 
-    jest
-      .spyOn(Storage.prototype, 'getItem')
-      .mockReturnValueOnce(JSON.stringify(initialStoragedData));
+    jest.spyOn(Storage.prototype, 'getItem').mockReturnValueOnce(JSON.stringify(initialStoragedData));
   });
 
   it('should be able to initialize cart with localStorage value', () => {
@@ -49,20 +45,18 @@ describe('useCart Hook', () => {
         {
           id: 1,
           amount: 2,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
+          image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
           price: 179.9,
           title: 'Tênis de Caminhada Leve Confortável',
         },
         {
           id: 2,
           amount: 1,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
+          image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
           price: 139.9,
           title: 'Tênis VR Caminhada Confortável Detalhes Couro Masculino',
         },
-      ])
+      ]),
     );
   });
 
@@ -77,8 +71,7 @@ describe('useCart Hook', () => {
       id: 3,
       title: 'Tênis Adidas Duramo Lite 2.0',
       price: 219.9,
-      image:
-        'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg',
+      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg',
     });
 
     const { result, waitForNextUpdate } = renderHook(useCart, {
@@ -96,16 +89,14 @@ describe('useCart Hook', () => {
         {
           id: 1,
           amount: 2,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
+          image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
           price: 179.9,
           title: 'Tênis de Caminhada Leve Confortável',
         },
         {
           id: 2,
           amount: 1,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
+          image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
           price: 139.9,
           title: 'Tênis VR Caminhada Confortável Detalhes Couro Masculino',
         },
@@ -114,15 +105,11 @@ describe('useCart Hook', () => {
           amount: 1,
           title: 'Tênis Adidas Duramo Lite 2.0',
           price: 219.9,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg',
+          image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg',
         },
-      ])
+      ]),
     );
-    expect(mockedSetItemLocalStorage).toHaveBeenCalledWith(
-      '@RocketShoes:cart',
-      JSON.stringify(result.current.cart)
-    );
+    expect(mockedSetItemLocalStorage).toHaveBeenCalledWith('@RocketShoes:cart', JSON.stringify(result.current.cart));
   });
 
   it('should not be able add a product that does not exist', async () => {
@@ -141,16 +128,12 @@ describe('useCart Hook', () => {
 
     await waitFor(
       () => {
-        expect(mockedToastError).toHaveBeenCalledWith(
-          'Erro na adição do produto'
-        );
+        expect(mockedToastError).toHaveBeenCalledWith('Erro na adição do produto');
       },
-      { timeout: 200 }
+      { timeout: 200 },
     );
 
-    expect(result.current.cart).toEqual(
-      expect.arrayContaining(initialStoragedData)
-    );
+    expect(result.current.cart).toEqual(expect.arrayContaining(initialStoragedData));
     expect(mockedSetItemLocalStorage).not.toHaveBeenCalled();
   });
 
@@ -163,8 +146,7 @@ describe('useCart Hook', () => {
     });
     apiMock.onGet(`products/${productId}`).reply(200, {
       id: 1,
-      image:
-        'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
+      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
       price: 179.9,
       title: 'Tênis de Caminhada Leve Confortável',
     });
@@ -184,25 +166,20 @@ describe('useCart Hook', () => {
         {
           id: 1,
           amount: 3,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
+          image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
           price: 179.9,
           title: 'Tênis de Caminhada Leve Confortável',
         },
         {
           id: 2,
           amount: 1,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
+          image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
           price: 139.9,
           title: 'Tênis VR Caminhada Confortável Detalhes Couro Masculino',
         },
-      ])
+      ]),
     );
-    expect(mockedSetItemLocalStorage).toHaveBeenCalledWith(
-      '@RocketShoes:cart',
-      JSON.stringify(result.current.cart)
-    );
+    expect(mockedSetItemLocalStorage).toHaveBeenCalledWith('@RocketShoes:cart', JSON.stringify(result.current.cart));
   });
 
   it('should not be able to increase a product amount when running out of stock', async () => {
@@ -214,9 +191,9 @@ describe('useCart Hook', () => {
     });
     apiMock.onGet(`products/${productId}`).reply(200, {
       id: 2,
-      title: "Tênis VR Caminhada Confortável Detalhes Couro Masculino",
+      title: 'Tênis VR Caminhada Confortável Detalhes Couro Masculino',
       price: 139.9,
-      image: "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg"
+      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
     });
 
     const { result, waitFor } = renderHook(useCart, {
@@ -229,18 +206,14 @@ describe('useCart Hook', () => {
 
     await waitFor(
       () => {
-        expect(mockedToastError).toHaveBeenCalledWith(
-          'Quantidade solicitada fora de estoque'
-        );
+        expect(mockedToastError).toHaveBeenCalledWith('Quantidade solicitada fora de estoque');
       },
       {
         timeout: 200,
-      }
+      },
     );
 
-    expect(result.current.cart).toEqual(
-      expect.arrayContaining(initialStoragedData)
-    );
+    expect(result.current.cart).toEqual(expect.arrayContaining(initialStoragedData));
     expect(mockedSetItemLocalStorage).not.toHaveBeenCalled();
   });
 
@@ -260,17 +233,13 @@ describe('useCart Hook', () => {
         {
           amount: 2,
           id: 1,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
+          image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
           price: 179.9,
           title: 'Tênis de Caminhada Leve Confortável',
         },
-      ])
+      ]),
     );
-    expect(mockedSetItemLocalStorage).toHaveBeenCalledWith(
-      '@RocketShoes:cart',
-      JSON.stringify(result.current.cart)
-    );
+    expect(mockedSetItemLocalStorage).toHaveBeenCalledWith('@RocketShoes:cart', JSON.stringify(result.current.cart));
   });
 
   it('should not be able to remove a product that does not exist', () => {
@@ -285,9 +254,7 @@ describe('useCart Hook', () => {
     });
 
     expect(mockedToastError).toHaveBeenCalledWith('Erro na remoção do produto');
-    expect(result.current.cart).toEqual(
-      expect.arrayContaining(initialStoragedData)
-    );
+    expect(result.current.cart).toEqual(expect.arrayContaining(initialStoragedData));
     expect(mockedSetItemLocalStorage).not.toHaveBeenCalled();
   });
 
@@ -314,25 +281,20 @@ describe('useCart Hook', () => {
         {
           id: 1,
           amount: 2,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
+          image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
           price: 179.9,
           title: 'Tênis de Caminhada Leve Confortável',
         },
         {
           id: 2,
           amount: 2,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
+          image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
           price: 139.9,
           title: 'Tênis VR Caminhada Confortável Detalhes Couro Masculino',
         },
-      ])
+      ]),
     );
-    expect(mockedSetItemLocalStorage).toHaveBeenCalledWith(
-      '@RocketShoes:cart',
-      JSON.stringify(result.current.cart)
-    );
+    expect(mockedSetItemLocalStorage).toHaveBeenCalledWith('@RocketShoes:cart', JSON.stringify(result.current.cart));
   });
 
   it('should not be able to update a product that does not exist', async () => {
@@ -350,16 +312,12 @@ describe('useCart Hook', () => {
 
     await waitFor(
       () => {
-        expect(mockedToastError).toHaveBeenCalledWith(
-          'Erro na alteração de quantidade do produto'
-        );
+        expect(mockedToastError).toHaveBeenCalledWith('Erro na alteração de quantidade do produto');
       },
-      { timeout: 200 }
+      { timeout: 200 },
     );
 
-    expect(result.current.cart).toEqual(
-      expect.arrayContaining(initialStoragedData)
-    );
+    expect(result.current.cart).toEqual(expect.arrayContaining(initialStoragedData));
     expect(mockedSetItemLocalStorage).not.toHaveBeenCalled();
   });
 
@@ -381,16 +339,12 @@ describe('useCart Hook', () => {
 
     await waitFor(
       () => {
-        expect(mockedToastError).toHaveBeenCalledWith(
-          'Quantidade solicitada fora de estoque'
-        );
+        expect(mockedToastError).toHaveBeenCalledWith('Quantidade solicitada fora de estoque');
       },
-      { timeout: 200 }
+      { timeout: 200 },
     );
 
-    expect(result.current.cart).toEqual(
-      expect.arrayContaining(initialStoragedData)
-    );
+    expect(result.current.cart).toEqual(expect.arrayContaining(initialStoragedData));
     expect(mockedSetItemLocalStorage).not.toHaveBeenCalled();
   });
 
@@ -415,16 +369,12 @@ describe('useCart Hook', () => {
         () => {
           return result.current.cart;
         },
-        { timeout: 50 }
+        { timeout: 50 },
       );
-      expect(result.current.cart).toEqual(
-        expect.arrayContaining(initialStoragedData)
-      );
+      expect(result.current.cart).toEqual(expect.arrayContaining(initialStoragedData));
       expect(mockedSetItemLocalStorage).not.toHaveBeenCalled();
     } catch {
-      expect(result.current.cart).toEqual(
-        expect.arrayContaining(initialStoragedData)
-      );
+      expect(result.current.cart).toEqual(expect.arrayContaining(initialStoragedData));
       expect(mockedSetItemLocalStorage).not.toHaveBeenCalled();
     }
   });
